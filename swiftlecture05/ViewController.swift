@@ -13,20 +13,50 @@ class ViewController: UIViewController {
     @IBOutlet weak var lbName: UILabel!
     
     
+    @IBOutlet weak var touchView: UIView!
+    
+    
+    
     @IBAction func btnConfirmClicked(_ sender: Any) {
         lbName.text="ssw5086"
         let button = sender as! UIButton;
         button.setTitle("OK", for: UIControl.State.normal)
-        
-        
+
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchesBegan")
+        
+        if let touch = touches.first {
+            let loc = touch.location(in: self.touchView)
+            
+            print("\( loc )")
+            if ( self.touchView.frame.contains(loc)) {
+            self .touchView.backgroundColor = UIColor.red
+                
+            }
+            
+            else  {
+                
+                self.touchView.backgroundColor = UIColor.blue
+            }
+        }
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchesEnded")
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBOutlet weak var ayut: UILabel!
+    
 }
 
